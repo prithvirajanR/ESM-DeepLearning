@@ -1,0 +1,77 @@
+Total Human Datasets: 32
+
+Total datasets with multiple mutants (Any Taxon): 11
+Examples of datasets with multiple mutants:
+                                  DMS_id       taxon  DMS_number_multiple_mutants
+5                    A4_HUMAN_Seuma_2021       Human                        14015
+19  CAPSD_AAV2S_Sinai_substitutions_2021       Virus                        41796
+24                 DLG4_HUMAN_Faure_2021       Human                         5696
+30               F7YBW8_MESOW_Aakre_2015  Prokaryote                         9155
+32     GCN4_YEAST_Staller_induction_2018   Eukaryote                         2605
+
+--- Human Proteins Analysis ---
+Human datasets with multiple mutants: 4
+
+Available Human Proteins (Single Mutants):
+molecule_name
+TP53                                      4
+CP2C9                                     2
+PTEN                                      2
+VKORC1                                    2
+APP                                       1
+GRB2-SH3                                  1
+HRAS                                      1
+BRCA1                                     1
+CALM1                                     1
+ADRB2                                     1
+MPL                                       1
+MAPK1                                     1
+KCNH2                                     1
+MSH2                                      1
+SCN5A                                     1
+SRC                                       1
+NUDT15                                    1
+PSD95-PDZ3                                1
+Small ubiquitin-related modifier 1        1
+SUMO-conjugating enzyme UBC9              1
+TARDBP                                    1
+Sodium-dependent serotonin transporter    1
+Thiamin pyrophosphokinase 1               1
+Thiopurine S-methyltransferase            1
+YAP1                                      1
+alpha-synuclein                           1
+
+Detailed List (ID, Molecule, Single Mutants, Multiple Mutants):
+                                      DMS_id                           molecule_name  DMS_number_single_mutants  DMS_number_multiple_mutants
+5                        A4_HUMAN_Seuma_2021                                     APP                        468                        14015
+9                     ADRB2_HUMAN_Jones_2020                                   ADRB2                       7800                            0
+16                  BRCA1_HUMAN_Findlay_2018                                   BRCA1                       1837                            0
+18                    CALM1_HUMAN_Weile_2017                                   CALM1                       1813                            0
+22        CP2C9_HUMAN_Amorosi_abundance_2021                                   CP2C9                       6370                            0
+23         CP2C9_HUMAN_Amorosi_activity_2021                                   CP2C9                       6142                            0
+24                     DLG4_HUMAN_Faure_2021                              PSD95-PDZ3                       1280                         5696
+34                     GRB2_HUMAN_Faure_2021                                GRB2-SH3                       1034                        62332
+40                    KCNH2_HUMAN_Kozek_2020                                   KCNH2                        200                            0
+42                    MK01_HUMAN_Brenan_2016                                   MAPK1                       6809                            0
+43                       MSH2_HUMAN_Jia_2020                                    MSH2                      16749                            0
+47                   NUD15_HUMAN_Suiter_2020                                  NUDT15                       2844                            0
+48  P53_HUMAN_Giacomelli_NULL_Etoposide_2018                                    TP53                       7467                            0
+49     P53_HUMAN_Giacomelli_NULL_Nutlin_2018                                    TP53                       7467                            0
+50       P53_HUMAN_Giacomelli_WT_Nutlin_2018                                    TP53                       7467                            0
+51                     P53_HUMAN_Kotler_2018                                    TP53                       1048                            0
+57                  PTEN_HUMAN_Matreyek_2021                                    PTEN                       5083                            0
+58                   PTEN_HUMAN_Mighell_2018                                    PTEN                       7260                            0
+62                   RASH_HUMAN_Bandaru_2017                                    HRAS                       3134                            0
+67                    SC6A4_HUMAN_Young_2021  Sodium-dependent serotonin transporter                      11576                            0
+68                   SCN5A_HUMAN_Glazer_2019                                   SCN5A                        224                            0
+72                   SRC_HUMAN_Ahler_CD_2019                                     SRC                       3372                            0
+73                    SUMO1_HUMAN_Weile_2017      Small ubiquitin-related modifier 1                       1700                            0
+74                  SYUA_HUMAN_Newberry_2020                         alpha-synuclein                       2497                            0
+75                TADBP_HUMAN_Bolognesi_2019                                  TARDBP                       1196                            0
+77                     TPK1_HUMAN_Weile_2017             Thiamin pyrophosphokinase 1                       3181                            0
+78                  TPMT_HUMAN_Matreyek_2018          Thiopurine S-methyltransferase                       3648                            0
+79           TPOR_HUMAN_Bridgford_S505N_2020                                     MPL                        562                            0
+82                     UBC9_HUMAN_Weile_2017            SUMO-conjugating enzyme UBC9                       2563                            0
+84       VKOR1_HUMAN_Chiasson_abundance_2020                                  VKORC1                       2695                            0
+85        VKOR1_HUMAN_Chiasson_activity_2020                                  VKORC1                        697                            0
+86                     YAP1_HUMAN_Araya_2012                                    YAP1                        362                         9713
