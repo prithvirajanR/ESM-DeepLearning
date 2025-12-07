@@ -1,0 +1,4 @@
+data_a4_human='./data/A4_HUMAN_Seuma_2021.csv'
+data_prgym_reference='./data/ProteinGym_reference_file_substitutions.csv'
+filename1='A4_HUMAN_Seuma_2021.csv'
+filename2='ProteinGym_reference_file_substitutions.csv' 
