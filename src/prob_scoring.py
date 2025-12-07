@@ -11,11 +11,11 @@ def per_site_wt_logprobs(input_ids, attention_mask, model, mask_id):
     mask_positions = torch.arange(L, device=ids.device)
 
    
-    batch = ids.repeat(mask_positions.numel(), 1)
-    batch[torch.arange(mask_positions.numel()), mask_positions] = mask_id
+    batch = ids.repeat(L, 1)
+    batch[torch.arange(L), mask_positions] = mask_id
 
     
-    amask = attention_mask.repeat(mask_positions.numel(), 1)
+    amask = attention_mask.repeat(L, 1)
 
     with torch.no_grad():
         logits = model(input_ids=batch, attention_mask=amask).logits
@@ -37,12 +37,11 @@ def sequence_pll(input_ids, attention_mask, model, mask_id):
 
 
 
-def batch_pll(sequences, tokenizer, model, device):
+def batch_pll(sequences, tokenizer, model):
    
-    Tokenizer = SeqTokenizer()
     
-    input_ids, attention_mask = Tokenizer.encode(sequences)
-    mask_id = Tokenizer.mask_id
+    input_ids, attention_mask = tokenizer.encode(sequences)
+    mask_id = tokenizer.mask_id
 
     PLLs = []
     for i in range(len(sequences)):
@@ -51,5 +50,34 @@ def batch_pll(sequences, tokenizer, model, device):
 
     return PLLs
 
+
+def llr_score(wt_seq, mutant_seq, tokenizer, model):
+
+    sequences = [wt_seq, mutant_seq]
+
+    input_ids, attention_mask = tokenizer.encode(sequences)
+    mask_id = tokenizer.mask_id
+
+    pll_wt = sequence_pll(
+        input_ids[0:1],
+        attention_mask[0:1],
+        model, 
+        mask_id
+    )
+
+    pll_mut = sequence_pll(
+        input_ids[1:2],
+        attention_mask[1:2],
+        model, 
+        mask_id
+    )
+
+    llr = pll_mut.item() - pll_wt.item()
+
+    return llr
+
+
+
+    
 
 
