@@ -7,19 +7,22 @@ from src.models import ESM2Model
 from src.scoring import calculate_masked_marginal
 from src.data_loader import DMSDataset
 
-def explore_landscape(wt_sequence: str, model_wrapper, k_values: list, n_per_k: int = 100):
+def explore_landscape(wt_sequence: str, model_wrapper, k_values: list, n_per_k: int = 100, method="MLLR"):
     """
     Explore the fitness landscape by scoring random mutants at different distances.
-    
-    Args:
-        wt_sequence: Wild-type sequence
-        model_wrapper: Loaded ESM model
-        k_values: List of mutational distances to test
-        n_per_k: Number of mutants to generate per distance
-        
-    Returns:
-        DataFrame with results
     """
+    from src.scoring import MaskedMarginalScoring, PseudoLogLikelihoodScoring, MaskedLogLikelihoodRatioScoring
+    
+    # Initialize scorer
+    if method == "MM":
+        scorer = MaskedMarginalScoring()
+    elif method == "PLL":
+        scorer = PseudoLogLikelihoodScoring()
+    elif method == "MLLR":
+        scorer = MaskedLogLikelihoodRatioScoring()
+    else:
+        raise ValueError(f"Unknown method {method}")
+        
     results = []
     
     for k in k_values:
@@ -31,25 +34,7 @@ def explore_landscape(wt_sequence: str, model_wrapper, k_values: list, n_per_k: 
         # Score each mutant
         for mutant_code, mutant_seq in tqdm(mutants, desc=f"k={k}"):
             try:
-                # For k=1 (single mutants), use Masked Marginal (fast)
-                if k == 1:
-                    # Parse single mutation
-                    wt_aa = mutant_code[0]
-                    pos = int(mutant_code[1:-1]) - 1
-                    mut_aa = mutant_code[-1]
-                    score = calculate_masked_marginal(model_wrapper, wt_sequence, pos, mut_aa)
-                else:
-                    # For k>1, we need to average scores or use a different approach
-                    # Let's use average of individual masked marginals
-                    mutations = mutant_code.split(':')
-                    scores = []
-                    for mut in mutations:
-                        wt_aa = mut[0]
-                        pos = int(mut[1:-1]) - 1
-                        mut_aa = mut[-1]
-                        s = calculate_masked_marginal(model_wrapper, wt_sequence, pos, mut_aa)
-                        scores.append(s)
-                    score = np.mean(scores)
+                score = scorer.score(model_wrapper, wt_sequence, mutant_code, mutant_seq)
                 
                 results.append({
                     'k': k,
@@ -118,12 +103,12 @@ if __name__ == "__main__":
     n_per_k = 50  # Generate 50 mutants per distance (adjust if too slow)
     
     print(f"\nExploring landscape at k={k_values} with {n_per_k} mutants each...")
-    df = explore_landscape(wt_seq, model, k_values, n_per_k)
+    df = explore_landscape(wt_seq, model, k_values, n_per_k, method="MLLR")
     
     # Save results
-    output_csv = "f:/ESM/results/landscape_exploration.csv"
+    output_csv = "f:/ESM/results/landscape_exploration_mllr.csv"
     df.to_csv(output_csv, index=False)
     print(f"\nResults saved to {output_csv}")
     
     # Plot
-    plot_landscape(df, "f:/ESM/results/landscape_plot.png")
+    plot_landscape(df, "f:/ESM/results/landscape_plot_mllr.png")

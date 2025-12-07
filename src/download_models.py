@@ -26,6 +26,16 @@ def download_all_models():
     except Exception as e:
         print(f"❌ Failed to cache ESM-1v: {e}")
 
+    # 3. ESM-2 (650M) - Higher capacity
+    model_name_esm2_650 = "facebook/esm2_t33_650M_UR50D"
+    print(f"\n--- Caching {model_name_esm2_650} ---")
+    try:
+        model = ESM2Model(model_name_esm2_650, cache_dir=cache_dir)
+        model.load_model()
+        print("✅ ESM-2 (650M) successfully cached.")
+    except Exception as e:
+        print(f"❌ Failed to cache ESM-2 (650M): {e}")
+
     print("\nAll downloads complete. Models are saved locally.")
 
 if __name__ == "__main__":
