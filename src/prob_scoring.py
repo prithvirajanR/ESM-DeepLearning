@@ -2,39 +2,65 @@ import torch
 import torch.nn.functional as F
 from src.mask_position import*
 
-def per_site_wt_logprobs(input_ids, attention_mask, model, mask_id):
-
+def per_site_wt_logprobs(input_ids, attention_mask, model, mask_id, batch_size=32):
+    
     ids = input_ids.clone()
     B, L = ids.shape
-
- 
-    mask_positions = torch.arange(L, device=ids.device)
-
-   
-    batch = ids.repeat(L, 1)
-    batch[torch.arange(L), mask_positions] = mask_id
-
     
-    amask = attention_mask.repeat(L, 1)
-
-    with torch.no_grad():
-        logits = model(input_ids=batch, attention_mask=amask).logits
-        logp = torch.log_softmax(logits, dim=-1)
-
+    # We want to score every position in the sequence
+    all_log_probs = []
     
-    wt_tokens = ids[0, mask_positions]
+    # Iterate through the sequence in chunks (minibatches)
+    for i in range(0, L, batch_size):
+        
+        # 1. Define the range for this batch
+        batch_end = min(i + batch_size, L)
+        current_batch_size = batch_end - i
+        
+        # 2. Create a mini-batch of copies
+        # Shape: [current_batch_size, L]
+        batch_ids = ids.repeat(current_batch_size, 1)
+        batch_amask = attention_mask.repeat(current_batch_size, 1)
+        
+        # 3. Apply masking diagonally for this batch
+        # We need to mask positions i to batch_end
+        mask_positions = torch.arange(i, batch_end, device=ids.device)
+        
+        # The row indices in our mini-batch are 0, 1, ... current_batch_size-1
+        row_indices = torch.arange(current_batch_size, device=ids.device)
+        
+        batch_ids[row_indices, mask_positions] = mask_id
+        
+        # 4. Forward pass (Gradient checkpointing saves memory but is slower; optional)
+        with torch.no_grad():
+            logits = model(input_ids=batch_ids, attention_mask=batch_amask).logits
+        
+        # 5. Extract the probabilities of the *true* wild-type tokens at the masked positions
+        # Get logits for the specific masked positions: shape [current_batch_size, vocab_size]
+        # We select the logits at the positions we masked [row_indices, mask_positions]
+        masked_logits = logits[row_indices, mask_positions, :]
+        
+        # Log Softmax
+        logp = torch.log_softmax(masked_logits, dim=-1)
+        
+        # Get the WT token IDs at these positions
+        wt_tokens = ids[0, mask_positions]
+        
+        # Gather the log-prob of the WT token
+        # shape: [current_batch_size]
+        wt_logps_batch = logp.gather(1, wt_tokens.unsqueeze(1)).squeeze(1)
+        
+        all_log_probs.append(wt_logps_batch)
 
-    wt_logps = logp[torch.arange(mask_positions.numel()), mask_positions, wt_tokens]
-
-    return wt_logps
+    # Concatenate all batches back into a single tensor of length L
+    return torch.cat(all_log_probs)
 
 
 def sequence_pll(input_ids, attention_mask, model, mask_id):
-
-    logps = per_site_wt_logprobs(input_ids, attention_mask, model, mask_id)
+    
+    logps = per_site_wt_logprobs(input_ids, attention_mask, model, mask_id, batch_size=32)
     pll = logps.sum()
     return pll
-
 
 
 def batch_pll(sequences, tokenizer, model):
