@@ -1,0 +1,2 @@
+/home/htc/fsafarov/mlm/MLM_2.py:156: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+  plt.show()
