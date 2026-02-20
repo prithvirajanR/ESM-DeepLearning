@@ -1,0 +1,81 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{3}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Motivation}{3}{subsection.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Models Tested}{3}{subsection.1.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces ESM models used in this study.}}{3}{table.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:models}{{1}{3}{ESM models used in this study}{table.caption.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3}The A4\_HUMAN Dataset}{3}{subsection.1.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Dataset statistics.}}{3}{table.caption.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.4}Hypotheses}{3}{subsection.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Methods}{4}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Scoring Methods}{4}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.1}Masked Log-Likelihood Ratio (MLLR)}{4}{subsubsection.2.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.2}Pseudo-Log-Likelihood (PLL)}{4}{subsubsection.2.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.3}Entropy-Weighted MLLR}{4}{subsubsection.2.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.4}Mutant-Only Marginal}{4}{subsubsection.2.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.5}Ensemble MLLR}{4}{subsubsection.2.1.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.6}Embedding Distance Scoring (EDS)}{4}{subsubsection.2.1.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Epistasis Analysis}{4}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Landscape Exploration}{4}{subsection.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Technical Setup}{5}{subsection.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Results}{5}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Initial Validation (Phase 1)}{5}{subsection.3.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Initial validation: ESM-2 (150M) Masked Marginal scores vs.\ experimental DMS fitness for 468 single mutants ($\rho = 0.25$, $p = 5 \times 10^{-8}$). This confirmed the pipeline works and justified scaling up.}}{5}{figure.caption.3}\protected@file@percent }
+\newlabel{fig:baseline}{{1}{5}{Initial validation: ESM-2 (150M) Masked Marginal scores vs.\ experimental DMS fitness for 468 single mutants ($\rho = 0.25$, $p = 5 \times 10^{-8}$). This confirmed the pipeline works and justified scaling up}{figure.caption.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Comprehensive Benchmark (18 Configurations)}{5}{subsection.3.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Full benchmark leaderboard sorted by Spearman $\rho $ within each model group. Run times on NVIDIA A100.}}{6}{table.caption.4}\protected@file@percent }
+\newlabel{tab:leaderboard}{{3}{6}{Full benchmark leaderboard sorted by Spearman $\rho $ within each model group. Run times on NVIDIA A100}{table.caption.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Probabilistic Methods Dominate}{6}{subsubsection.3.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}Model Size Consistently Helps}{6}{subsubsection.3.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3}EDS as a Practical Alternative}{6}{subsubsection.3.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Benchmark Report Plots}{7}{subsection.3.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces \textbf  {ESM-2 (650M) + MLLR} ($\rho = 0.427$) --- the top-performing configuration overall.}}{7}{figure.caption.5}\protected@file@percent }
+\newlabel{fig:bench_mllr}{{2}{7}{\textbf {ESM-2 (650M) + MLLR} ($\rho = 0.427$) --- the top-performing configuration overall}{figure.caption.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces \textbf  {ESM-2 (650M) + PLL} ($\rho = 0.425$) --- nearly identical to MLLR despite being $\sim $700$\times $ more expensive.}}{7}{figure.caption.6}\protected@file@percent }
+\newlabel{fig:bench_pll}{{3}{7}{\textbf {ESM-2 (650M) + PLL} ($\rho = 0.425$) --- nearly identical to MLLR despite being $\sim $700$\times $ more expensive}{figure.caption.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces \textbf  {ESM-2 (650M) + Ensemble MLLR} ($\rho = 0.423$, Top-100 Precision = 13\%) --- best precision among all methods.}}{7}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:bench_ensemble}{{4}{7}{\textbf {ESM-2 (650M) + Ensemble MLLR} ($\rho = 0.423$, Top-100 Precision = 13\%) --- best precision among all methods}{figure.caption.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces \textbf  {ESM-2 (650M) + EDS} ($\rho = 0.388$) --- the geometry-based alternative. Competitive correlation with far lower computational cost.}}{8}{figure.caption.8}\protected@file@percent }
+\newlabel{fig:bench_eds}{{5}{8}{\textbf {ESM-2 (650M) + EDS} ($\rho = 0.388$) --- the geometry-based alternative. Competitive correlation with far lower computational cost}{figure.caption.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces \textbf  {ESM-2 (150M) + MLLR} ($\rho = 0.371$) --- smaller model, reduced but still meaningful performance.}}{8}{figure.caption.9}\protected@file@percent }
+\newlabel{fig:bench_150m}{{6}{8}{\textbf {ESM-2 (150M) + MLLR} ($\rho = 0.371$) --- smaller model, reduced but still meaningful performance}{figure.caption.9}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces \textbf  {ESM-1v + MLLR} ($\rho = 0.290$) --- the variant-specialist model underperforms on this dataset despite having 650M parameters.}}{8}{figure.caption.10}\protected@file@percent }
+\newlabel{fig:bench_esm1v}{{7}{8}{\textbf {ESM-1v + MLLR} ($\rho = 0.290$) --- the variant-specialist model underperforms on this dataset despite having 650M parameters}{figure.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Epistasis Analysis}{8}{subsection.3.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Predicted epistasis distributions ($n = 14{,}015$).}}{8}{table.caption.11}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Epistasis scatter plots ($n = 14{,}015$ doubles). EDS (a) shows a systematic upward offset from the diagonal---positive epistasis caused by the triangle inequality. PLL (b) lies along the diagonal, reflecting log-additivity.}}{9}{figure.caption.12}\protected@file@percent }
+\newlabel{fig:epistasis_scatter}{{8}{9}{Epistasis scatter plots ($n = 14{,}015$ doubles). EDS (a) shows a systematic upward offset from the diagonal---positive epistasis caused by the triangle inequality. PLL (b) lies along the diagonal, reflecting log-additivity}{figure.caption.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Epistasis value distributions. EDS (a) is centred at +3.3 (systematic buffering). PLL (b) is centred near zero (additive). The experimental mean is $-0.25$.}}{9}{figure.caption.13}\protected@file@percent }
+\newlabel{fig:epistasis_dist}{{9}{9}{Epistasis value distributions. EDS (a) is centred at +3.3 (systematic buffering). PLL (b) is centred near zero (additive). The experimental mean is $-0.25$}{figure.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Hypothesis Testing}{9}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.1}H4: Single vs.\ Double Mutant Prediction}{9}{subsubsection.3.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces H4: Spearman $\rho $ for singles ($n=468$) vs.\ doubles ($n=14{,}015$).}}{9}{table.caption.14}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces H4: Single vs.\ double mutant prediction accuracy for EDS and PLL. Error bars show 95\% bootstrap confidence intervals. Neither method shows a statistically significant difference between singles and doubles.}}{10}{figure.caption.15}\protected@file@percent }
+\newlabel{fig:h4}{{10}{10}{H4: Single vs.\ double mutant prediction accuracy for EDS and PLL. Error bars show 95\% bootstrap confidence intervals. Neither method shows a statistically significant difference between singles and doubles}{figure.caption.15}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.2}H5: Epistasis Accuracy and Landscape Trust}{10}{subsubsection.3.5.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces H5: Linking epistasis accuracy to overall prediction quality.}}{10}{table.caption.16}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces H5: Comparison of epistasis prediction accuracy and overall prediction quality for EDS and PLL. EDS has higher (though small) epistasis correlation and substantially better overall Spearman $\rho $.}}{10}{figure.caption.17}\protected@file@percent }
+\newlabel{fig:h5}{{11}{10}{H5: Comparison of epistasis prediction accuracy and overall prediction quality for EDS and PLL. EDS has higher (though small) epistasis correlation and substantially better overall Spearman $\rho $}{figure.caption.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Landscape Exploration}{11}{subsection.3.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces EDS fitness decay with mutational distance. Box plots show score distributions at $k = 2, 5, 10, 20$ mutations. Fitness drops monotonically but sub-linearly, reflecting the saturation effect of the triangle inequality.}}{11}{figure.caption.18}\protected@file@percent }
+\newlabel{fig:landscape_decay_eds}{{12}{11}{EDS fitness decay with mutational distance. Box plots show score distributions at $k = 2, 5, 10, 20$ mutations. Fitness drops monotonically but sub-linearly, reflecting the saturation effect of the triangle inequality}{figure.caption.18}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces PLL fitness decay with mutational distance. PLL drops roughly proportionally to $k$, consistent with the additive (position-independent) nature of log-likelihoods.}}{11}{figure.caption.19}\protected@file@percent }
+\newlabel{fig:landscape_decay_pll}{{13}{11}{PLL fitness decay with mutational distance. PLL drops roughly proportionally to $k$, consistent with the additive (position-independent) nature of log-likelihoods}{figure.caption.19}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Violin plots of EDS score distributions at each mutational distance. The distributions widen with increasing $k$, indicating greater variance among highly mutated sequences.}}{12}{figure.caption.20}\protected@file@percent }
+\newlabel{fig:landscape_violin_eds}{{14}{12}{Violin plots of EDS score distributions at each mutational distance. The distributions widen with increasing $k$, indicating greater variance among highly mutated sequences}{figure.caption.20}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Violin plots of PLL score distributions at each mutational distance. The narrower distributions compared to EDS reflect PLL's more linear response to cumulative mutations.}}{12}{figure.caption.21}\protected@file@percent }
+\newlabel{fig:landscape_violin_pll}{{15}{12}{Violin plots of PLL score distributions at each mutational distance. The narrower distributions compared to EDS reflect PLL's more linear response to cumulative mutations}{figure.caption.21}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Discussion}{13}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Probabilistic Scoring as the Recommended Approach}{13}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}The Effect of Model Scale}{13}{subsection.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Effect of model scaling: Spearman $\rho $ improvement from ESM-2 (150M) to ESM-2 (650M).}}{13}{table.caption.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}EDS: Geometry Beats Probability for Precision}{13}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}The Epistasis Limitation}{13}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Practical Recommendations}{14}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Limitations}{14}{subsection.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{14}{section.5}\protected@file@percent }
+\gdef \@abspage@last{15}

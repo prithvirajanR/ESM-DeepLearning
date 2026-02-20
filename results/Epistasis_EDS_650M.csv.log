@@ -1,0 +1,13 @@
+2026-02-11 13:49:51,208 - INFO - *** TORCH VERSION: 2.7.1+cu118 ***
+2026-02-11 13:49:51,213 - INFO - *** RUNNING ON DEVICE: NVIDIA A100-SXM4-40GB ***
+2026-02-11 13:49:51,213 - INFO - *** BATCH SIZE: 32 ***
+2026-02-11 13:49:51,213 - INFO - Loading data from data/A4_HUMAN_Seuma_2021.csv...
+2026-02-11 13:49:51,243 - INFO - 'mutated_sequence' column missing. Using DMSDataset with reference data/ProteinGym_reference_file_substitutions.csv...
+2026-02-11 13:49:52,166 - INFO - Loaded 14483 sequences. WT length: 770
+2026-02-11 13:49:52,169 - INFO - Loading model facebook/esm2_t33_650M_UR50D (esm2)...
+2026-02-11 13:50:05,947 - INFO - Starting scoring with EDS from index 0...
+2026-02-11 13:50:05,954 - INFO - DEBUG: First Mutant Code: D672V:V710G
+2026-02-11 13:50:05,954 - INFO - DEBUG: WT Seq (first 10): MLPGLALLLL
+2026-02-11 13:50:05,954 - INFO - DEBUG: Mut Seq (first 10): MLPGLALLLL
+2026-02-11 13:50:05,954 - INFO - DEBUG: Sequences differ. Mutation applied successfully.
+2026-02-11 13:58:35,917 - INFO - Done!
