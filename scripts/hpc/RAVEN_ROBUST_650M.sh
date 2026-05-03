@@ -1,13 +1,16 @@
 #!/bin/bash
-#SBATCH --job-name=ROBUST_ESM1v
-#SBATCH --output=Robust_ESM1v_%j.out
-#SBATCH --error=Robust_ESM1v_%j.err
-#SBATCH --time=12:00:00
+#SBATCH --job-name=ROBUST_650M
+#SBATCH --output=Robust_650M_%j.out
+#SBATCH --error=Robust_650M_%j.err
+#SBATCH --time=23:59:00
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
-#SBATCH --mem=48G
+#SBATCH --mem=64G
 #SBATCH --gres=gpu:1
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
+cd "$PROJECT_ROOT"
 
 # Load modules
 module load anaconda/3/2021.11
@@ -23,9 +26,10 @@ export HF_HOME="$MY_PROJECT_DIR/cache/huggingface"
 export TORCH_HOME="$MY_PROJECT_DIR/cache/torch"
 
 # Run Batch Scoring using EnsembleMLLR
+# 650M is slower, so we give it 24h. E-MLLR is 5x slower than MLLR but 100x faster than PLL.
 python -m src.batch_scoring \
     --input_csv data/A4_HUMAN_Seuma_2021.csv \
-    --output_csv results/A4_HUMAN_Seuma_2021_ESM1v_EnsembleMLLR_predictions.csv \
-    --model facebook/esm1v_t33_650M_UR90S_1 \
-    --model_type esm1v \
+    --output_csv results/A4_HUMAN_Seuma_2021_ESM2_650M_EnsembleMLLR_predictions.csv \
+    --model facebook/esm2_t33_650M_UR50D \
+    --model_type esm2 \
     --method EnsembleMLLR

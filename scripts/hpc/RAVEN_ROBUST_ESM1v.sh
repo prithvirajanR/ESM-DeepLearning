@@ -1,13 +1,16 @@
 #!/bin/bash
-#SBATCH --job-name=ROBUST_150M
-#SBATCH --output=Robust_150M_%j.out
-#SBATCH --error=Robust_150M_%j.err
-#SBATCH --time=04:00:00
+#SBATCH --job-name=ROBUST_ESM1v
+#SBATCH --output=Robust_ESM1v_%j.out
+#SBATCH --error=Robust_ESM1v_%j.err
+#SBATCH --time=12:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
-#SBATCH --mem=32G
+#SBATCH --mem=48G
 #SBATCH --gres=gpu:1
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
+cd "$PROJECT_ROOT"
 
 # Load modules
 module load anaconda/3/2021.11
@@ -23,10 +26,9 @@ export HF_HOME="$MY_PROJECT_DIR/cache/huggingface"
 export TORCH_HOME="$MY_PROJECT_DIR/cache/torch"
 
 # Run Batch Scoring using EnsembleMLLR
-# 150M is fast, so 4 hours is plenty even with 5 passes/mutant
 python -m src.batch_scoring \
     --input_csv data/A4_HUMAN_Seuma_2021.csv \
-    --output_csv results/A4_HUMAN_Seuma_2021_ESM2_150M_EnsembleMLLR_predictions.csv \
-    --model facebook/esm2_t30_150M_UR50D \
-    --model_type esm2 \
+    --output_csv results/A4_HUMAN_Seuma_2021_ESM1v_EnsembleMLLR_predictions.csv \
+    --model facebook/esm1v_t33_650M_UR90S_1 \
+    --model_type esm1v \
     --method EnsembleMLLR

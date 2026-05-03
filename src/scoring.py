@@ -93,7 +93,7 @@ class MaskedMarginalScoring(ScoringMethod):
 class PseudoLogLikelihoodScoring(ScoringMethod):
     """
     Scores based on the Pseudo-Log-Likelihood (PLL) of the full sequence.
-    PLL = Sum(log P(x_i | x_{\i})) for all i.
+    PLL = Sum(log P(x_i | x_except_i)) for all i.
     """
     @property
     def name(self) -> str:

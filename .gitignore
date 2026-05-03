@@ -1,0 +1,21 @@
+# Python/cache noise
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local environments and model caches
+.venv/
+venv/
+env/
+model_cache/
+
+# HPC runtime output
+*.out
+*.err
+slurm-*.out
+
+# Local scratch files
+tmp/
+scratch/
+.DS_Store
+Thumbs.db

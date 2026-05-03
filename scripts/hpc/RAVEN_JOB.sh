@@ -9,6 +9,9 @@
 #SBATCH --cpus-per-task=18      # Recommended ratio (72 cores / 4 GPUs = 18)
 #SBATCH --mem=125000            # Recommended memory (500GB / 4 GPUs = 125GB)
 #SBATCH --time=24:00:00         # Max runtime 24 hours
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
+cd "$PROJECT_ROOT"
 
 # -----------------------------------------------------------------------------
 # RAVEN HPC SUBMISSION SCRIPT
@@ -19,11 +22,11 @@ module purge
 module load anaconda/3/2021.11
 
 # Create/Activate Virtual Env in /ptmp
-# NOTE: We assume you ran SETUP_ENV.sh first!
+# NOTE: We assume you ran scripts/setup/SETUP_ENV.sh first!
 export MY_PROJECT_DIR="/ptmp/$USER/ESM_Project"
 export ENV_DIR="$MY_PROJECT_DIR/env"
 
-echo "🔌 Activating Environment: $ENV_DIR"
+echo "ðŸ”Œ Activating Environment: $ENV_DIR"
 source activate "$ENV_DIR"
 
 export HF_HOME="/ptmp/$USER/hf_cache"
@@ -38,14 +41,14 @@ echo "Project Directory: $MY_PROJECT_DIR"
 # Try to sync from where you submitted the job (SLURM_SUBMIT_DIR)
 # rsync -av --exclude 'model_cache' $SLURM_SUBMIT_DIR/ $MY_PROJECT_DIR/
 
-cd $SLURM_SUBMIT_DIR
+cd "$PROJECT_ROOT"
 
 # 3. Install Dependencies (First time only)
 # Ideally, you create the environment once interactively, but here is a safe check.
 # pip install -r requirements.txt
 
 # -----------------------------------------------------------------------------
-# ⚙️ USER CONFIGURATION (CHANGE THIS PART ONLY)
+# âš™ï¸ USER CONFIGURATION (CHANGE THIS PART ONLY)
 # -----------------------------------------------------------------------------
 INPUT_FILE="A4_HUMAN_Seuma_2021.csv"  # Only change the filename here!
 # -----------------------------------------------------------------------------

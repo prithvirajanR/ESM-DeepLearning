@@ -8,6 +8,9 @@
 #SBATCH --mem=32G
 #SBATCH --time=24:00:00
 #SBATCH --gres=gpu:a100:1
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
+cd "$PROJECT_ROOT"
 
 # 1. Environment Setup
 module load anaconda/3/2021.11

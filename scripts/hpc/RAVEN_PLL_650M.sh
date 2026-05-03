@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH --job-name=PLL_150M
-#SBATCH --output=%j_PLL_150M.out
-#SBATCH --error=%j_PLL_150M.err
+#SBATCH --job-name=PLL_650M
+#SBATCH --output=%j_PLL_650M.out
+#SBATCH --error=%j_PLL_650M.err
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --constraint="gpu"
@@ -9,6 +9,9 @@
 #SBATCH --cpus-per-task=18
 #SBATCH --mem=125000
 #SBATCH --time=24:00:00
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
+cd "$PROJECT_ROOT"
 
 # 1. Setup Environment
 module purge
@@ -20,15 +23,15 @@ export HF_HOME="/ptmp/$USER/hf_cache"
 
 mkdir -p $MY_PROJECT_DIR
 mkdir -p $HF_HOME
-cd $SLURM_SUBMIT_DIR
+cd "$PROJECT_ROOT"
 
 # -----------------------------------------------------------------------------
 # CONFIGURATION
 # -----------------------------------------------------------------------------
 INPUT_FILE="A4_HUMAN_Seuma_2021.csv"
-MODEL_NAME="facebook/esm2_t30_150M_UR50D"
+MODEL_NAME="facebook/esm2_t33_650M_UR50D"
 METHOD="PLL"
-TAG="_ESM2_150M_PLL"
+TAG="_ESM2_650M_PLL"
 
 OUTPUT_FILE="results/${INPUT_FILE%.*}${TAG}_predictions.csv"
 # -----------------------------------------------------------------------------
@@ -40,6 +43,6 @@ python -m src.batch_scoring \
     --output_csv "$OUTPUT_FILE" \
     --method $METHOD \
     --model $MODEL_NAME \
-    --batch_size 512
+    --batch_size 128
 
 echo "Scoring Done. (Analysis will be run manually later)."
